@@ -1,14 +1,11 @@
 # iRail Data Engineering Pipeline - Leuven Station
 
-[![forthebadge made-with-python](https://ForTheBadge.com/images/badges/made-with-python.svg)](https://www.python.org/)
-[![forthebadge made-with-azure sql](https://forthebadge.com/api/badges/generate?panels=2&primaryLabel=MADE+WITH&secondaryLabel=AZURE+SQL&primaryBGColor=%2331C4F3&primaryTextColor=%23FFFFFF&secondaryBGColor=%23389AD5&secondaryTextColor=%23FFFFFF&primaryFontSize=12&primaryFontWeight=400&primaryLetterSpacing=2&primaryFontFamily=Roboto&primaryTextTransform=uppercase&secondaryFontSize=12&secondaryFontWeight=900&secondaryLetterSpacing=2&secondaryFontFamily=Montserrat&secondaryTextTransform=uppercase)](https://forthebadge.com/generator)
-[![forthebadge visualised-with-power BI](https://forthebadge.com/api/badges/generate?panels=2&primaryLabel=visualised+with&secondaryLabel=Power+BI&primaryBGColor=%23ff52b7&primaryTextColor=%23FFFFFF&secondaryBGColor=%23b530f3&secondaryTextColor=%23FFFFFF&primaryFontSize=11&primaryFontWeight=400&primaryLetterSpacing=2&primaryFontFamily=Roboto&primaryTextTransform=uppercase&secondaryFontSize=12&secondaryFontWeight=900&secondaryLetterSpacing=2&secondaryFontFamily=Montserrat&secondaryTextTransform=uppercase)](https://forthebadge.com/generator)
+[forthebadge made-with-python](assets/made-with-python.html)
+[forthebadge made-with-azure-sql](assets/made-with-azure-sql.html)
+[forthebadge vizualized-with-PowerBI](assets/vizualized-with-PowerBI.html)
 
-
-[![Wallpaper](https://www.luetze-transportation.com/fileadmin/luetze-transportation.com/media/en/blog/ai-in-the-railway-ecosystem/ai-in-the-railway-ecosystem-luetze-transportation-gmbh.jpg)](https://www.luetze-transportation.com/blog/ai-in-the-railway-ecosystem)  
-*Image source: [Luetze Transportation](https://www.luetze-transportation.com/blog/ai-in-the-railway-ecosystem)*
-
-## Description
+## 📌 Project Overview
+![challenge-azure](assets/Picture.png)
 The Belgian railway network is a complex web of real-time movements, delays, and connections. This project focuses on building a robust, cloud-native data pipeline to capture this motion. By fetching live data from the [iRail API](https://docs.irail.be/), processing it via scheduled Azure Functions, and storing it in an Azure SQL Database, the system transforms raw transport streams into dynamic Power BI insights. This setup allows for continuous monitoring of delay trends and operational reliability at Leuven station without manual intervention.
 
 ## Installation
