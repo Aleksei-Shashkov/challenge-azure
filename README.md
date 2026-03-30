@@ -1,13 +1,10 @@
 # iRail Data Engineering Pipeline - Leuven Station
 
-[forthebadge made-with-python](assets/made-with-python.html)
-[forthebadge made-with-azure-sql](assets/made-with-azure-sql.html)
-[forthebadge vizualized-with-PowerBI](assets/vizualized-with-PowerBI.html)
-
 ## 📌 Project Overview
-![challenge-azure](assets/Picture.png)
+![challenge-azure](assets/picture.png)
 The Belgian railway network is a complex web of real-time movements, delays, and connections. This project focuses on building a robust, cloud-native data pipeline to capture this motion. By fetching live data from the [iRail API](https://docs.irail.be/), processing it via scheduled Azure Functions, and storing it in an Azure SQL Database, the system transforms raw transport streams into dynamic Power BI insights. This setup allows for continuous monitoring of delay trends and operational reliability at Leuven station without manual intervention.
 
+---
 ## Installation
 
 1. **Clone the project:**
