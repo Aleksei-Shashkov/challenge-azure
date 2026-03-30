@@ -1,177 +1,151 @@
-# 🚆 Azure Train Data Project with iRail API
+# iRail Data Engineering Pipeline - Leuven Station
 
-- Repository: `challenge-azure`
-- Type of Challenge: `Learning`
-- Duration: `5 days`
-- Deadline: `dd/mm/yy H:i AM/PM`
-- Team challenge : `solo`
-
-## Azure Setup
-You'll be provided a @becode.education Microsoft account.
-
-Use it to create an Azure account here:
-https://portal.azure.com/#home
-
-Once it's done start **Azure for Students**. Thanks to this you won't need to register a credit card and you'll get:
-
-- $100 credit to spend in Azure
-- Free services
-
-More information here: https://azure.microsoft.com/en-us/free/students/
-
-When the setup is done you can start creating resources!
-
-![alt text](assets/azure-for-student.png)
-
-## 🎯 Project Overview
-
-Create a real-world data pipeline that fetches train departure data from the [iRail API](https://docs.irail.be/), normalizes it, and stores it in a SQL database — all deployed using Microsoft Azure.
-
-This project is structured in three progressive levels:
-
-- 🟢 **Must-Have**: Set up core functionality — fetch and store data via Azure Portal using Azure Functions and Azure SQL Database.
-
-![mvp_pipeline](./assets/mvp_pipeline.png)
-
-- 🟡 **Nice-to-Have**: Add automation (scheduling), build a live dashboard (e.g., Power BI), and enable data refresh.
-- 🔴 **Hardcode Level**: Explore full DevOps integration — CI/CD pipelines, scripting with Azure CLI, Docker deployment, and cloud-native infrastructure as code.
-
-👉 **Important:** You must complete the *Must-Have* stage first. However, it's crucial that you **think ahead to what kind of dashboard or insights you might want to build** (in Nice-to-Have and Hardcore Level). This will help you design the right data schema and fetch meaningful data now — avoiding the need to start over later.
-
-## 🧠 Project Vision
-
-Using the [iRail API](https://docs.irail.be), your mission is to create a **live, cloud-native dashboard** that gives insight into train operations in Belgium. You'll gather real-time public transport data, structure and store it in the cloud, and visualize it in a way that's useful and meaningful.
-
-You're encouraged to bring **your own ideas and creativity**. The iRail API offers a variety of data: live departures, delays, connections, train routes, and more. Your final dashboard should **tell a story**, answer real-world questions, or help someone make smarter decisions about train travel.
-
-## 💡 Example Use Cases to Consider Early
-
-These are some potential directions your dashboard could take. Pick one early to help you decide:
-
-- **Live Departure Board**: Show current or recent train departures for a selected station
-- **Delay Monitor**: Track which stations or trains experience the most delays over time
-- **Route Explorer**: Let users check travel time and transfer info between two cities
-- **Train Type Distribution**: Visualize where and how different train types (IC, S, etc.) operate
-- **Peak Hour Analysis**: Show how train traffic and delays vary by time of day or week
-- **Real-Time Train Map** (advanced): Plot moving trains with geolocation
-
-🧭 **Plan ahead**: Even though you’re currently focusing on fetching and storing data, choose a use case now so you start downloading the **right endpoints and fields** (e.g., platform, delay, train type, connection route). This makes later stages easier and more meaningful.
-
-## 🟢 Must-Have: Azure Function Pipeline via Azure Portal
-
-### Objective  
-Use the Azure **web portal** (no CLI) to deploy a **Python Azure Function** that fetches live train data and inserts it into an **Azure SQL Database**.
-
-### Azure Services Used
-
-| Azure Service              | Purpose                                       |
-|---------------------------|-----------------------------------------------|
-| Azure Function App (Python) | Run data ingestion logic as a serverless app |
-| Azure SQL Database         | Store normalized train data                   |
-| Azure Storage Account      | Dependency for Function App                  |
-| App Service Plan (Consumption) | Host the Function with autoscaling      |
-
-### Steps
-
-1. **Create Azure SQL Database** via the portal:
-   - Use the “Create a resource” wizard
-   - Set up firewall to allow external IP
-   - Note the connection string for later use
-
-2. **Create an Azure Function App**:
-   - Use “Python 3.10” as the runtime
-   - Deploy an HTTP-triggered function using the web editor
-   - Use environment variables for credentials (in App Settings)
-
-3. **Implement the logic** to:
-   - Call the iRail API (`/liveboard` or /`connections`)
-   - Normalize the JSON using Python libraries (e.g., pandas)
-   - Connect and write to Azure SQL
-
-4. **Test the Function** directly from the portal and verify that the data appears in your SQL table.
-
-### Deliverables
-
-- ✅ Deployed Azure Function (HTTP endpoint)
-- ✅ Azure SQL DB with at least one filled table
-- ✅ Documentation (README) describing your process
-  
-## 🟡 Nice-to-Have: Automation, Power BI, and Scheduling
-
-### Objective  
-Extend the project by automating data ingestion and building live dashboards.
-
-### Additions
-
-1. **Scheduled Data Fetching**
-   - Add a **Timer Trigger** to your Function App
-   - Fetch new data every hour (or another interval)
-   - Ensure duplicate entries are handled in your SQL table
-
-2. **Live Power BI Dashboard**
-   - Connect **Power BI Service (online)** to Azure SQL
-   - Create visuals: bar charts, line graphs (e.g., trains per hour)
-   - Publish and embed the dashboard (optional)
-
-3. **Improved Data Schema**
-   - Normalize additional fields like platform, status, vehicle type
-   - Use proper SQL data types: `DATETIME`, `INT`, `VARCHAR`
-
-4. **Logging & Monitoring**
-   - Use Azure Application Insights for runtime metrics and error tracking
-   - Log custom events in your Function
-
-## 🔴 Hardcore Level: CI/CD, Azure CLI, and DevOps Automation
-
-### Objective  
-Take your project to production-grade deployment using DevOps practices and cloud scripting.
-
-### Advanced Features
-
-1. **CI/CD Pipeline**  
-   - Automate building, testing, and deploying your Function App and infrastructure.  
-   - Use GitHub Actions or Azure DevOps Pipelines for repeatable, reliable delivery.
-
-2. **Infrastructure as Code with Terraform**  
-   - Define and provision Azure resources declaratively using Terraform configs.  
-   - Enables version-controlled, repeatable infrastructure deployments integrated into your pipeline.
-
-3. **Azure CLI and Scripting Automation**  
-   - Write Python or shell scripts to automate Azure resource management and configuration tasks.  
-   - Useful for custom setup steps not covered by Terraform or CI/CD tools.
-
-4. **Authentication and Security Best Practices**  
-   - Implement Managed Identities to avoid hardcoded secrets.  
-   - Secure Function endpoints with OAuth, API keys, or Azure AD integration.
-
-5. **Containerization with Docker**  
-   - Package your Azure Function or pipeline code in Docker containers.  
-   - Deploy containers to Azure Container Registry and run via Azure Functions Premium Plan or Azure Container Apps.
+[![forthebadge made-with-python](https://ForTheBadge.com/images/badges/made-with-python.svg)](https://www.python.org/)
+[![forthebadge made-with-azure sql](https://forthebadge.com/api/badges/generate?panels=2&primaryLabel=MADE+WITH&secondaryLabel=AZURE+SQL&primaryBGColor=%2331C4F3&primaryTextColor=%23FFFFFF&secondaryBGColor=%23389AD5&secondaryTextColor=%23FFFFFF&primaryFontSize=12&primaryFontWeight=400&primaryLetterSpacing=2&primaryFontFamily=Roboto&primaryTextTransform=uppercase&secondaryFontSize=12&secondaryFontWeight=900&secondaryLetterSpacing=2&secondaryFontFamily=Montserrat&secondaryTextTransform=uppercase)](https://forthebadge.com/generator)
+[![forthebadge visualised-with-power BI](https://forthebadge.com/api/badges/generate?panels=2&primaryLabel=visualised+with&secondaryLabel=Power+BI&primaryBGColor=%23ff52b7&primaryTextColor=%23FFFFFF&secondaryBGColor=%23b530f3&secondaryTextColor=%23FFFFFF&primaryFontSize=11&primaryFontWeight=400&primaryLetterSpacing=2&primaryFontFamily=Roboto&primaryTextTransform=uppercase&secondaryFontSize=12&secondaryFontWeight=900&secondaryLetterSpacing=2&secondaryFontFamily=Montserrat&secondaryTextTransform=uppercase)](https://forthebadge.com/generator)
 
 
-## 📝 Evaluation Criteria
+[![Wallpaper](https://www.luetze-transportation.com/fileadmin/luetze-transportation.com/media/en/blog/ai-in-the-railway-ecosystem/ai-in-the-railway-ecosystem-luetze-transportation-gmbh.jpg)](https://www.luetze-transportation.com/blog/ai-in-the-railway-ecosystem)  
+*Image source: [Luetze Transportation](https://www.luetze-transportation.com/blog/ai-in-the-railway-ecosystem)*
 
-| Category                      | Must-Have | Nice-to-Have | Hardcore Level     |
-|------------------------------|--------------|----------------------|----------------------------|
-| Function App is deployed     | ✅            | ✅                    | ✅                          |
-| SQL DB contains live data    | ✅            | ✅                    | ✅                          |
-| Code structure and clarity   | Basic        | Good abstraction     | Modular, reusable          |
-| Automation & scheduling      | ❌            | ✅                    | ✅ with pipeline automation |
-| Dashboard                    | ❌            | ✅ Power BI Live      | ✅ Auto-refresh + embed     |
-| Deployment strategy          | Manual       | Partial scripts      | Full CI/CD pipeline         |
-| Use of environment configs   | Basic         | Partial              | Secrets vault or managed ID|
+## Description
+The Belgian railway network is a complex web of real-time movements, delays, and connections. This project focuses on building a robust, cloud-native data pipeline to capture this motion. By fetching live data from the [iRail API](https://docs.irail.be/), processing it via scheduled Azure Functions, and storing it in an Azure SQL Database, the system transforms raw transport streams into dynamic Power BI insights. This setup allows for continuous monitoring of delay trends and operational reliability at Leuven station without manual intervention.
+
+## Installation
+
+1. **Clone the project:**
+
+```
+    git clone https://github.com/butkutez/challenge-azure.git
+    cd challenge-azure
+```
+2. **Create virtual environment (Windows)**
+```
+   python3.10 -m venv .venv
+   .\.venv\Scripts\Activate.ps1
+   ```
+
+3. **Install dependencies**  
+```
+    pip install -r requirements.txt
+```
+
+4. **Run the Data Pipeline** 
+
+To fetch live data from iRail and populate your database, run the following command in your terminal:
+
+```
+    func start
+```
+Once the host is running, open the provided **local URL** (check the terminal)  in your browser.
+
+## Repo Structure
+
+```
+CHALLENGE-AZURE
+├──assets
+│   ├── Azure_Function_app_test.png
+│   └── Azure_SQL_database.png
+├── .funcignore                   
+├── .gitignore
+├── function_app.py
+├── host.json        
+├── README.md
+├── requirements.txt
+└── table_code.sql
+```
+***Note**: `local.settings.json` is excluded from this repo for security but is required for local execution.*
+
+## Process & Methodology
+
+```
+┌─────────────┐       ┌──────────────────┐       ┌─────────────────┐       ┌──────────────┐
+│  iRail API  │ ──►   │  Azure Function  │ ──►   │  Azure SQL DB   │ ──►   │   Power BI   │
+│ /liveboard  │       │     (Python)     │       │ LeuvenDepartures│       │  Dashboard   │
+└─────────────┘       └──────────────────┘       └─────────────────┘       └──────────────┘
+   Raw JSON       Automated Cloud Data Pipeline      Stored Data             Live Insights
+```
+The development of this pipeline followed a structured approach to ensure data integrity and cloud compatibility.
+
+I. **Data Source & Analysis**
+I analyzed the iRail API structure, specifically the **liveboard** endpoint. Since the API returns deeply nested JSON, I identified the following key fields required for meaningful insights:
+
+- ```vehicle & vehicleinfo```: For train identification and type.
+
+- ```time```: Unix timestamp requiring conversion to SQL-friendly DATETIME.
+
+- ```delay```: Integer values to track punctuality.
+
+II. **Normalization Strategy**
+Instead of importing a heavy library like Pandas, I opted for a lightweight manual normalization approach within the Azure Function.
+
+- **Flattening**: I iterated through the departures list to extract nested values (like train_number from inside vehicleinfo).  
+Code:  ```train.get("vehicleinfo", {}).get("number")```
+
+- **Data Typing**: I ensured integers (delays/canceled status) and strings (destinations) were correctly typed before the SQL insertion.  
+Code: ``` int(train.get("delay", 0))```, ```int(train.get("canceled", 0))``` and ```train.get("station")```
+
+- **Transformation**: 
+    - *Parsing*: I converted raw Unix timestamps (seconds since epoch) into Python datetime objects using ```datetime.fromtimestamp(ts)```.
+
+    - *Serialization*: I then used ```dt.isoformat()``` to generate ISO 8601 strings. This is a critical step because while Python objects exist in memory, Azure SQL requires a standardized string format to correctly interpret and store data into DATETIME columns.
+
+III. **Cloud Infrastructure Setup**  
+The infrastructure was provisioned via the Azure Portal:
+- **Azure SQL Database**: Created a serverless database and configured the Server-level Firewall to allow the Function App's IP address.
+
+- **Function App (Timer Trigger)**: Transitioned the project from a manual HTTP trigger to a scheduled Timer Trigger using a CRON expression ```(0 */10 * * * *)```. This ensures the "Extract" and "Load" phases execute automatically every 10 minutes, maintaining a near-real-time dataset of Leuven station activity.
+
+- **Security**: To avoid hardcoding credentials, I utilized Azure App Settings (Environment Variables) to store the SQL_AZURE_CONNECTION string.
+
+IV. **Database Integration**  
+To handle real-time data overlaps, I implemented a SQL MERGE (Upsert) strategy. Rather than performing a standard bulk insert which could lead to primary key violations or duplicate records, the pipeline evaluates each record:
+
+- MATCHED: Existing records are updated with the latest ``delay``,  ``platform`` and ``canceled`` information.
+
+- NOT MATCHED: New train departures are seamlessly inserted into the ``LeuvenDepartures`` table. This ensures the database remains a "Single Source of Truth" for station status, even across multiple scheduled scrapes.
+
+## SQL Schema
+To support the data being fetched, I created the following table in Azure SQL:
+
+```sql
+CREATE TABLE LeuvenDepartures (
+    id INT IDENTITY(1,1) PRIMARY KEY,
+    vehicle NVARCHAR(100),
+    train_number NVARCHAR(50),
+    train_type NVARCHAR(50),
+    departure_time DATETIMEOFFSET,
+    platform NVARCHAR(10),
+    delay_in_seconds INT,
+    canceled INT,
+    destination NVARCHAR(255),
+    created_at DATETIME DEFAULT GETDATE()
+);
+```
+
+## **The Result:**  
+By automating the pipeline from iRail API to Azure SQL, I transformed raw JSON into structured transit insights for Leuven.
+
+**Azure App Test**:  
+Successful execution of the `fetch_leuven_departures` function, returning live vehicle data.
+
+![function app](assets/Azure_Function_app_test.png)
+
+**Azure SQL Database**:  
+The `irail-SQL-DB` showing the `LeuvenDepartures` table successfully populated with real-time train numbers, delay times and information about the train.
+
+![SQL database](assets/Azure_SQL_database.png)
 
 
-## ✅ Submission Checklist
+## **Future Improvements:**  
 
-- [ ] GitHub repo with all source code and README
-- [ ] Screenshot of Function App test run
-- [ ] Screenshot of SQL data table
-- [ ] If applicable, link to Power BI dashboard
-- [ ] (Optional) CI/CD pipeline config and diagram
+- *Live Power BI Dashboard*: upload generated graphs to README.md.
 
+- *Predictive Analytics*: Use historical data to predict delays based on weather or time of day.
 
-## 🔚 Final Notes
+## **Timeline**
+This solo project was completed over 5 days.
 
-- Focus first on getting your **Function App to insert real data**
-- Treat each level as an **independent milestone**
+## 📌 Personal context note
+This project was done as part of the AI & Data Science Bootcamp at BeCode (Ghent), class of 2025-2026.
+Feel free to reach out or connect with me on [LinkedIn](https://www.linkedin.com/in/shashkov-aleksei/)!
