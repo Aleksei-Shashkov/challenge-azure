@@ -33,6 +33,7 @@ To fetch live data from iRail and populate your database, run the following comm
 ```
 Once the host is running, open the provided **local URL** (check the terminal)  in your browser.
 
+---
 ## Repo Structure
 
 ```
@@ -50,6 +51,7 @@ CHALLENGE-AZURE
 ```
 ***Note**: `local.settings.json` is excluded from this repo for security but is required for local execution.*
 
+---
 ## Process & Methodology
 
 ```
@@ -99,6 +101,7 @@ To handle real-time data overlaps, I implemented a SQL MERGE (Upsert) strategy. 
 
 - NOT MATCHED: New train departures are seamlessly inserted into the ``LeuvenDepartures`` table. This ensures the database remains a "Single Source of Truth" for station status, even across multiple scheduled scrapes.
 
+---
 ## SQL Schema
 To support the data being fetched, I created the following table in Azure SQL:
 
@@ -117,6 +120,7 @@ CREATE TABLE LeuvenDepartures (
 );
 ```
 
+---
 ## **The Result:**  
 By automating the pipeline from iRail API to Azure SQL, I transformed raw JSON into structured transit insights for Leuven.
 
@@ -131,12 +135,14 @@ The `irail-SQL-DB` showing the `LeuvenDepartures` table successfully populated w
 ![SQL database](assets/Azure_SQL_database.png)
 
 
+---
 ## **Future Improvements:**  
 
 - *Live Power BI Dashboard*: upload generated graphs to README.md.
 
 - *Predictive Analytics*: Use historical data to predict delays based on weather or time of day.
 
+---
 ## **Timeline**
 This solo project was completed over 5 days.
 
